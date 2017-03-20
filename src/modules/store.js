@@ -1,6 +1,14 @@
+import queryString from 'query-string';
+
+const { budget, totalCalories } = queryString.parse(window.location.search);
+
+const getNumericValue = value => (
+  isNaN(value) ? 0 : Number(value)
+);
+
 const store = {
-  budget: 101,
-  totalCalories: 0,
+  budget: getNumericValue(budget),
+  totalCalories: getNumericValue(totalCalories),
   groupedGroceryList: {},
   groupNames: [],
   currentTab: 0,
