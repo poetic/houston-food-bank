@@ -41,21 +41,21 @@
       <div class="top-flex">
         <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
         <div class="tracker" id="v-tracker">
-          <div class="red tracker-amount">{{totalCalories}} calories</div>
+          <div class="red tracker-amount">{{ adjustedTotalCalories() }} calories</div>
           <div class="divider tracker-amount">/</div>
-          <div class="green tracker-amount">{{ budget | currency }}</div>
+          <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
         </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
       <a class="cart-button w-inline-block" data-ix="mobile-cart-menu" href="#"></a>
     </div>
     <div class="list">
       <div class="list-tabs w-tabs" data-duration-in="300" data-duration-out="100">
         <div class="list-tabs-menu w-tab-menu" id="v-grocery-list-tabs">
-          <a class="list-tab-link w-inline-block w-tab-link" data-w-tab="Fruit" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
+          <a class="list-tab-link w-inline-block w-tab-link" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
             <div>{{ groupName }}</div>
           </a>
         </div>
         <div class="list-tabs-content w-tab-content" id="v-grocery-list-tabs-content">
-          <div class="list-tab-pane w-tab-pane" data-w-tab="Fruit" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
+          <div class="list-tab-pane w-tab-pane" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
             <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
               <div class="list-item-name">{{ item.name }}</div>
               <div class="list-item-details">
@@ -82,12 +82,12 @@
         </div>
       </div>
     </div>
-    <div class="cart">
+    <div class="cart" id="v-cart">
       <div class="cart-heading">
         <div class="my-shopping-cart">My shopping cart</div>
-        <div class="bold">Your family has $101 to spend on 60,550 calories</div>
-        <div>Nutritious calories: 1,030</div>
-        <div>Non-nutritious calories: 0</div>
+        <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories }} calories</div>
+        <div>Nutritious calories: {{ nutritiousCalories() }}</div>
+        <div>Non-nutritious calories: {{ nonNutritiousCalories() }}</div>
       </div>
       <div class="cart-title w-clearfix">
         <div class="quantity-title">
@@ -100,39 +100,15 @@
           <div>PRICE</div>
         </div>
       </div>
-      <div class="cart-item w-clearfix">
+      <div class="cart-item w-clearfix" v-for="item in selectedItems()">
         <div class="cart-quantity">
-          <div>2</div>
+          <div>{{ item.quantity }}</div>
         </div>
         <div class="cart-item-block">
-          <div class="cart-item-name">Bananas (3)</div>
+          <div class="cart-item-name">{{ item.name }}</div>
           <div class="cart-details">
-            <div>315 calories</div>
-            <div>96¢</div>
-          </div>
-        </div>
-      </div>
-      <div class="cart-item w-clearfix">
-        <div class="cart-quantity">
-          <div>1</div>
-        </div>
-        <div class="cart-item-block">
-          <div class="cart-item-name">Grapes (1 lb.)</div>
-          <div class="cart-details">
-            <div>155 calories</div>
-            <div>$1.98</div>
-          </div>
-        </div>
-      </div>
-      <div class="cart-item w-clearfix">
-        <div class="cart-quantity">
-          <div>2</div>
-        </div>
-        <div class="cart-item-block">
-          <div class="cart-item-name">Mandarin orange fruit cups (4 cups)</div>
-          <div class="cart-details">
-            <div>560 calories</div>
-            <div>$4.84</div>
+            <div>{{ item.calories }} calories</div>
+            <div>{{ item.price }}</div>
           </div>
         </div>
       </div>
@@ -140,7 +116,7 @@
         <div class="cart-total-block">
           <div class="cart-total">Total</div>
           <div class="cart-total-amount">
-            <div>$7.78</div>
+            <div>{{ cartTotalPrice() | currency }}</div>
           </div>
         </div><a class="button outline w-button" data-ix="show-empty-cart-modal" href="#">Empty cart</a></div>
     </div>

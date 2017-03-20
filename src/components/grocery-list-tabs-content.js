@@ -11,16 +11,12 @@ export default {
     removeItem(item) {
       if (item.quantity !== 0) {
         item.quantity -= 1;
-
-        this.modifyTotalCalories(-item.calories);
-        this.modifyBudget(item.price);
       }
     },
     addItem(item) {
-      item.quantity += 1;
-
-      this.modifyTotalCalories(item.calories);
-      this.modifyBudget(-item.price);
+      if (this.adjustedBudget() >= item.price) {
+        item.quantity += 1;
+      }
     },
   },
   filters: {

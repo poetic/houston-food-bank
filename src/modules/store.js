@@ -1,3 +1,4 @@
+import { flatten } from 'lodash';
 import queryString from 'query-string';
 
 const { budget, totalCalories } = queryString.parse(window.location.search);
@@ -13,12 +14,40 @@ const store = {
   groupNames: [],
   currentTab: 0,
   activeContent: 0,
-  webflow: false,
-  modifyTotalCalories(calories) {
-    this.totalCalories += calories;
+  selectedItems() {
+    const groupedSelectedItems = this.groupNames.map(groupName => (
+      this.groupedGroceryList[groupName].filter(item => item.quantity > 0)
+    ));
+
+    return flatten(groupedSelectedItems);
   },
-  modifyBudget(price) {
-    this.budget += price;
+  nutritiousCalories() {
+    const nutritiousItems = this.selectedItems().filter(item => !item.nonNutritious);
+
+    return nutritiousItems.reduce((total, item) => (
+      total + (item.calories * item.quantity)
+    ), 0);
+  },
+  nonNutritiousCalories() {
+    const nonNutritiousItems = this.selectedItems().filter(item => item.nonNutritious);
+
+    return nonNutritiousItems.reduce((total, item) => (
+      total + (item.calories * item.quantity)
+    ), 0);
+  },
+  cartTotalPrice() {
+    return this.selectedItems().reduce((total, item) => (
+      total + (item.price * item.quantity)
+    ), 0);
+  },
+  cartIsEmpty() {
+    return this.selectedItems().length === 0;
+  },
+  adjustedTotalCalories() {
+    return this.nutritiousCalories() + this.nonNutritiousCalories();
+  },
+  adjustedBudget() {
+    return this.budget - this.cartTotalPrice();
   },
 };
 
