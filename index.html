@@ -31,10 +31,10 @@
 </head>
 
 <body class="gray">
-  <div class="modal-wrapper">
-    <div class="modal">
+  <div class="modal-wrapper" id="v-empty-cart-modal">
+    <div class="modal" >
       <h2>Empty your cart?</h2>
-      <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#">Cancel</a></div>
+      <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#">Cancel</a></div>
   </div>
   <div class="background">
     <div class="top">
