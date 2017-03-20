@@ -1,11 +1,153 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>houston-food-bank</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Mon Mar 20 2017 13:54:06 GMT+0000 (UTC) -->
+<html data-wf-domain="hfb-onepaycheckaway.webflow.io" data-wf-page="58cc4e15bf7c04924929b654" data-wf-site="58cc4e15bf7c04924929b657">
+
+<head>
+  <meta charset="utf-8">
+  <title>Shopping Cart</title>
+  <meta content="Shopping Cart" property="og:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="https://daks2k3a4ib2z.cloudfront.net/58cc4e15bf7c04924929b657/css/hfb-onepaycheckaway.webflow.28bf39e71.css" rel="stylesheet" type="text/css">
+  <script src="https://daks2k3a4ib2z.cloudfront.net/0globals/modernizr-2.7.1.js" type="text/javascript"></script>
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
+  <style>
+  html {
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    height: 100%;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  </style>
+</head>
+
+<body class="gray">
+  <div class="modal-wrapper">
+    <div class="modal">
+      <h2>Empty your cart?</h2>
+      <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#">Cancel</a></div>
+  </div>
+  <div class="background">
+    <div class="top">
+      <div class="top-flex">
+        <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
+        <div class="tracker" id="v-tracker">
+          <div class="red tracker-amount">{{totalCalories}} calories</div>
+          <div class="divider tracker-amount">/</div>
+          <div class="green tracker-amount">{{ budget | currency }}</div>
+        </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
+      <a class="cart-button w-inline-block" data-ix="mobile-cart-menu" href="#"></a>
+    </div>
+    <div class="list">
+      <div class="list-tabs w-tabs" data-duration-in="300" data-duration-out="100">
+        <div class="list-tabs-menu w-tab-menu" id="v-grocery-list-tabs">
+          <a class="list-tab-link w-inline-block w-tab-link" data-w-tab="Fruit" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
+            <div>{{ groupName }}</div>
+          </a>
+        </div>
+        <div class="list-tabs-content w-tab-content" id="v-grocery-list-tabs-content">
+          <div class="list-tab-pane w-tab-pane" data-w-tab="Fruit" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
+            <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
+              <div class="list-item-name">{{ item.name }}</div>
+              <div class="list-item-details">
+                <div>{{item.calories}} calories</div>
+              </div>
+              <div class="list-item-details">
+                <div>{{item.servings}} servings</div>
+              </div>
+              <div class="list-item-details">
+                <div>{{item.price | currency}}</div>
+              </div>
+              <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious and don’t count towards your calorie goal.</div>
+              <div class="quantity">
+                <div class="quantity-flex w-clearfix">
+                  <a class="w-inline-block" href="#" v-on:click="removeItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b664_less-disabled.png" width="32"></a>
+                  <div class="quantity-amount">
+                    <div>{{ item.quantity }}</div>
+                  </div>
+                  <a class="w-inline-block" href="#" v-on:click="addItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b663_more.png" width="32"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart">
+      <div class="cart-heading">
+        <div class="my-shopping-cart">My shopping cart</div>
+        <div class="bold">Your family has $101 to spend on 60,550 calories</div>
+        <div>Nutritious calories: 1,030</div>
+        <div>Non-nutritious calories: 0</div>
+      </div>
+      <div class="cart-title w-clearfix">
+        <div class="quantity-title">
+          <div>QTY</div>
+        </div>
+        <div class="item-title">
+          <div>ITEM</div>
+        </div>
+        <div class="item-price">
+          <div>PRICE</div>
+        </div>
+      </div>
+      <div class="cart-item w-clearfix">
+        <div class="cart-quantity">
+          <div>2</div>
+        </div>
+        <div class="cart-item-block">
+          <div class="cart-item-name">Bananas (3)</div>
+          <div class="cart-details">
+            <div>315 calories</div>
+            <div>96¢</div>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item w-clearfix">
+        <div class="cart-quantity">
+          <div>1</div>
+        </div>
+        <div class="cart-item-block">
+          <div class="cart-item-name">Grapes (1 lb.)</div>
+          <div class="cart-details">
+            <div>155 calories</div>
+            <div>$1.98</div>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item w-clearfix">
+        <div class="cart-quantity">
+          <div>2</div>
+        </div>
+        <div class="cart-item-block">
+          <div class="cart-item-name">Mandarin orange fruit cups (4 cups)</div>
+          <div class="cart-details">
+            <div>560 calories</div>
+            <div>$4.84</div>
+          </div>
+        </div>
+      </div>
+      <div class="cart-action">
+        <div class="cart-total-block">
+          <div class="cart-total">Total</div>
+          <div class="cart-total-amount">
+            <div>$7.78</div>
+          </div>
+        </div><a class="button outline w-button" data-ix="show-empty-cart-modal" href="#">Empty cart</a></div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+  <script src="https://daks2k3a4ib2z.cloudfront.net/58cc4e15bf7c04924929b657/js/webflow.053118362.js" type="text/javascript"></script>
+  <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+
 </html>
