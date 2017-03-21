@@ -19,9 +19,4 @@ export default {
       }
     },
   },
-  filters: {
-    currency(amount) {
-      return amount;
-    },
-  },
 };
