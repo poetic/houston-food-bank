@@ -41,7 +41,7 @@
       <div class="top-flex">
         <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
         <div class="tracker" id="v-tracker">
-          <div class="red tracker-amount">{{ adjustedTotalCalories() }} calories</div>
+          <div class="red tracker-amount">{{ adjustedTotalCalories() | decimal }} calories</div>
           <div class="divider tracker-amount">/</div>
           <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
         </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
@@ -59,13 +59,13 @@
             <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
               <div class="list-item-name">{{ item.name }}</div>
               <div class="list-item-details">
-                <div>{{item.calories}} calories</div>
+                <div>{{ item.calories | decimal }} calories</div>
               </div>
               <div class="list-item-details">
-                <div>{{item.servings}} servings</div>
+                <div>{{ item.servings }}</div>
               </div>
               <div class="list-item-details">
-                <div>{{item.price | currency}}</div>
+                <div>{{ item.price | currency }}</div>
               </div>
               <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious and don’t count towards your calorie goal.</div>
               <div class="quantity">
@@ -85,9 +85,9 @@
     <div class="cart" id="v-cart">
       <div class="cart-heading">
         <div class="my-shopping-cart">My shopping cart</div>
-        <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories }} calories</div>
-        <div>Nutritious calories: {{ nutritiousCalories() }}</div>
-        <div>Non-nutritious calories: {{ nonNutritiousCalories() }}</div>
+        <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories | decimal }} calories</div>
+        <div>Nutritious calories: {{ nutritiousCalories() | decimal }}</div>
+        <div>Non-nutritious calories: {{ nonNutritiousCalories() | decimal }}</div>
       </div>
       <div class="cart-title w-clearfix">
         <div class="quantity-title">
@@ -107,8 +107,8 @@
         <div class="cart-item-block">
           <div class="cart-item-name">{{ item.name }}</div>
           <div class="cart-details">
-            <div>{{ item.calories }} calories</div>
-            <div>{{ item.price }}</div>
+            <div>{{ item.calories | decimal }} calories</div>
+            <div>{{ item.price | currency }}</div>
           </div>
         </div>
       </div>
