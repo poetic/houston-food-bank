@@ -1,5 +1,5 @@
 import Vue from 'vue';
 import numeral from 'numeral';
 
-/* eslint-disable prefer-arrow-callback */
-Vue.filter('currency', amount => numeral(amount).format('$0,0[.]00'));
+Vue.filter('decimal', number => numeral(number).format('0,0[.]00'));
+Vue.filter('currency', number => numeral(number).format('$0,0[.]00'));
