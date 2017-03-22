@@ -16,6 +16,8 @@ export default {
     addItem(item) {
       if (this.adjustedBudget() >= item.price) {
         item.quantity += 1;
+      } else {
+        this.toggle('overBudgetModal');
       }
     },
   },
