@@ -9,6 +9,8 @@ export default {
       this.selectedItems().forEach((item) => {
         item.quantity = 0;
       });
+
+      this.toggle('emptyCartModal');
     },
   },
 };
