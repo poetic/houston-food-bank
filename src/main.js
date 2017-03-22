@@ -1,10 +1,13 @@
+import './modules/remove-webflow';
 import './modules/filters';
 
+import loading from './components/loading';
+import emptyCartModal from './components/empty-cart-modal';
+import overBudgetModal from './components/over-budget-modal';
 import tracker from './components/tracker';
 import groceryListTabs from './components/grocery-list-tabs';
 import groceryListTabsContent from './components/grocery-list-tabs-content';
 import cart from './components/cart';
-import emptyCartModal from './components/empty-cart-modal';
 import instantiate from './modules/instantiate';
 
 instantiate([
@@ -13,4 +16,6 @@ instantiate([
   groceryListTabsContent,
   cart,
   emptyCartModal,
+  overBudgetModal,
+  loading,
 ]);
