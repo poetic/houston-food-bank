@@ -107,8 +107,8 @@
         <div class="cart-item-block">
           <div class="cart-item-name">{{ item.name }}</div>
           <div class="cart-details">
-            <div>{{ item.calories | decimal }} calories</div>
-            <div>{{ item.price | currency }}</div>
+            <div>{{ item.calories * item.quantity | decimal }} calories</div>
+            <div>{{ item.price * item.quantity | currency }}</div>
           </div>
         </div>
       </div>
