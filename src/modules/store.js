@@ -14,14 +14,17 @@ const store = {
   groupNames: [],
   currentTab: 0,
   activeContent: 0,
-  modalStyles: {
-    emptyCart: {},
+  styles: {
+    loadingScreen: {},
+    loadingFill: {},
+    emptyCartModal: {},
+    overBudgetModal: {},
   },
-  toggleModal(modalName) {
-    const modalStyle = this.modalStyles[modalName] || {};
-    const display = modalStyle.display === 'block' ? 'none' : 'block';
+  toggle(elementName) {
+    const elementStyle = this.styles[elementName] || {};
+    const display = elementStyle.display === 'block' ? 'none' : 'block';
 
-    this.modalStyles[modalName] = { display };
+    this.styles[elementName] = { display };
   },
   selectedItems() {
     const groupedSelectedItems = this.groupNames.map(groupName => (
