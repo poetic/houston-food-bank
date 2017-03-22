@@ -4,7 +4,7 @@ import store from '../modules/store';
 export default {
   el: '#v-grocery-list-tabs',
   data: store,
-  created() {
+  mounted() {
     this.fetchGroceryList();
   },
   methods: {
