@@ -10,6 +10,7 @@ const formatGroceryList = (data) => {
         name: row.gsx$item.$t,
         price: Number(row.gsx$price.$t.replace('$', '')),
         calories: Number(row.gsx$calories.$t),
+        servings: `${row.gsx$servings.$t} ${row.gsx$servingsunits.$t || 'servings'}`,
         nonNutritious: !!row['gsx$non-nutritious'].$t,
         quantity: 0,
       });
