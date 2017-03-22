@@ -14,6 +14,15 @@ const store = {
   groupNames: [],
   currentTab: 0,
   activeContent: 0,
+  modalStyles: {
+    emptyCart: {},
+  },
+  toggleModal(modalName) {
+    const modalStyle = this.modalStyles[modalName] || {};
+    const display = modalStyle.display === 'block' ? 'none' : 'block';
+
+    this.modalStyles[modalName] = { display };
+  },
   selectedItems() {
     const groupedSelectedItems = this.groupNames.map(groupName => (
       this.groupedGroceryList[groupName].filter(item => item.quantity > 0)
