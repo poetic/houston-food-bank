@@ -86,7 +86,7 @@
       <div class="cart-heading">
         <div class="my-shopping-cart">My shopping cart</div>
         <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories | decimal }} calories</div>
-        <div>Nutritious calories: {{ nutritiousCalories() | decimal }}</div>
+        <div>Nutritious calories: {{ adjustedTotalCalories() | decimal }}</div>
         <div>Non-nutritious calories: {{ nonNutritiousCalories() | decimal }}</div>
       </div>
       <div class="cart-title w-clearfix">

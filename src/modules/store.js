@@ -21,20 +21,6 @@ const store = {
 
     return flatten(groupedSelectedItems);
   },
-  nutritiousCalories() {
-    const nutritiousItems = this.selectedItems().filter(item => !item.nonNutritious);
-
-    return nutritiousItems.reduce((total, item) => (
-      total + (item.calories * item.quantity)
-    ), 0);
-  },
-  nonNutritiousCalories() {
-    const nonNutritiousItems = this.selectedItems().filter(item => item.nonNutritious);
-
-    return nonNutritiousItems.reduce((total, item) => (
-      total + (item.calories * item.quantity)
-    ), 0);
-  },
   cartTotalPrice() {
     return this.selectedItems().reduce((total, item) => (
       total + (item.price * item.quantity)
@@ -43,8 +29,19 @@ const store = {
   cartIsEmpty() {
     return this.selectedItems().length === 0;
   },
+  nonNutritiousCalories() {
+    return this.selectedItems()
+      .filter(item => item.nonNutritious)
+      .reduce((total, item) => (
+        total + (item.calories * item.quantity)
+      ), 0);
+  },
   adjustedTotalCalories() {
-    return this.nutritiousCalories() + this.nonNutritiousCalories();
+    return this.selectedItems()
+      .filter(item => !item.nonNutritious)
+      .reduce((total, item) => (
+        total + (item.calories * item.quantity)
+      ), 0);
   },
   adjustedBudget() {
     return this.budget - this.cartTotalPrice();
