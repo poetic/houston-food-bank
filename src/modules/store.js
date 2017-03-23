@@ -41,6 +41,13 @@ const store = {
   cartIsEmpty() {
     return this.selectedItems().length === 0;
   },
+  nutritiousCalories() {
+    return this.selectedItems()
+      .filter(item => !item.nonNutritious)
+      .reduce((total, item) => (
+        total + (item.calories * item.quantity)
+      ), 0);
+  },
   nonNutritiousCalories() {
     return this.selectedItems()
       .filter(item => item.nonNutritious)
@@ -49,11 +56,7 @@ const store = {
       ), 0);
   },
   adjustedTotalCalories() {
-    return this.selectedItems()
-      .filter(item => !item.nonNutritious)
-      .reduce((total, item) => (
-        total + (item.calories * item.quantity)
-      ), 0);
+    return this.nutritiousCalories() + this.nonNutritiousCalories();
   },
   adjustedBudget() {
     return this.budget - this.cartTotalPrice();
