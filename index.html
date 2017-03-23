@@ -62,7 +62,7 @@
               <div class="list-item-details">
                 <div>{{ item.price | currency }}</div>
               </div>
-              <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious and don’t count towards your calorie goal.</div>
+              <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious.</div>
               <div class="quantity">
                 <div class="quantity-flex w-clearfix">
                   <a class="w-inline-block" href="#" v-on:click="removeItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b664_less-disabled.png" width="32"></a>
