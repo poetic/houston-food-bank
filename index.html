@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Wed Mar 22 2017 21:11:20 GMT+0000 (UTC) -->
+<!-- Last Published: Thu Mar 23 2017 19:01:31 GMT+0000 (UTC) -->
 <html data-wf-domain="hfb-onepaycheckaway.webflow.io" data-wf-page="58d1f1273dcf094158eb298c" data-wf-site="58cc4e15bf7c04924929b657">
 
 <head>
@@ -9,7 +9,7 @@
   <meta content="Shopping Cart" property="og:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
-  <link href="https://daks2k3a4ib2z.cloudfront.net/58cc4e15bf7c04924929b657/css/hfb-onepaycheckaway.webflow.78299a1c2.css" rel="stylesheet" type="text/css">
+  <link href="https://daks2k3a4ib2z.cloudfront.net/58cc4e15bf7c04924929b657/css/hfb-onepaycheckaway.webflow.164bba109.css" rel="stylesheet" type="text/css">
   <script src="https://daks2k3a4ib2z.cloudfront.net/0globals/modernizr-2.7.1.js" type="text/javascript"></script>
   <link href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
@@ -22,22 +22,22 @@
     </div>
   </div>
   <div id="v-app">
-    <div class="modal-wrapper" v-bind:style="styles.emptyCartModal">
+    <div class="modal-wrapper refresh" v-bind:style="styles.emptyCartModal">
       <div class="modal">
         <h2>Empty your cart?</h2>
-        <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Cancel</a></div>
+        <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle(&#39;emptyCartModal&#39;)">Cancel</a></div>
     </div>
-    <div class="modal-wrapper" v-bind:style="styles.overBudgetModal">
+    <div class="modal-wrapper over-budget" v-bind:style="styles.overBudgetModal">
       <div class="modal">
         <h2>Oh no! You're going over your budget!</h2>
-        <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('overBudgetModal')">Got it</a></div>
+        <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle(&#39;overBudgetModal&#39;)">Got it</a></div>
     </div>
     <div class="background w-clearfix">
       <div class="top">
         <div class="top-flex">
           <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
           <div class="tracker">
-            <div class="red tracker-amount">{{ adjustedTotalCalories() | decimal }} calories</div>
+            <div class="red tracker-amount">{{adjustedTotalCalories() | decimal }} calories</div>
             <div class="divider tracker-amount">/</div>
             <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
           </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
@@ -121,7 +121,7 @@
                 <div class="cart-total-amount">
                   <div>{{ cartTotalPrice() | currency }}</div>
                 </div>
-              </div><a class="button margin-bottom outline w-button" data-ix="show-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Empty cart</a></div>
+              </div><a class="button margin-bottom outline w-button" data-ix="show-empty-cart-modal" href="#" v-on:click="toggle(&#39;emptyCartModal&#39;)">Empty cart</a></div>
           </div>
           <div class="empty-cart" v-show="cartIsEmpty()"><img class="cart-icon" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b67e_shopping-cart.png" width="71">
             <div>You haven't selected any groceries yet!</div>
