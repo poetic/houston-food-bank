@@ -1,15 +1,13 @@
 import { flatten } from 'lodash';
 import queryString from 'query-string';
 
+import convertToNumber from '../modules/convertToNumber';
+
 const { budget, totalCalories } = queryString.parse(window.location.search);
 
-const getNumericValue = value => (
-  isNaN(value) ? 0 : Number(value)
-);
-
 const data = {
-  budget: getNumericValue(budget),
-  totalCalories: getNumericValue(totalCalories),
+  budget: convertToNumber(budget),
+  totalCalories: convertToNumber(totalCalories),
   groupedGroceryList: {},
   groupNames: [],
   currentTab: 0,
