@@ -1,21 +1,24 @@
+import Vue from 'vue';
+
 import './modules/remove-webflow';
 import './modules/filters';
 
-import loading from './components/loading';
-import emptyCartModal from './components/empty-cart-modal';
-import overBudgetModal from './components/over-budget-modal';
-import tracker from './components/tracker';
-import groceryListTabs from './components/grocery-list-tabs';
-import groceryListTabsContent from './components/grocery-list-tabs-content';
-import cart from './components/cart';
-import instantiate from './modules/instantiate';
+import data from './data';
+import methods from './methods';
+import fetchGroceryList from './modules/fetchGroceryList';
 
-instantiate([
-  tracker,
-  groceryListTabs,
-  groceryListTabsContent,
-  cart,
-  emptyCartModal,
-  overBudgetModal,
-  loading,
-]);
+/* eslint-disable no-new */
+new Vue({
+  data,
+  methods,
+  el: '#v-app',
+  mounted() {
+    fetchGroceryList()
+      .then((groupedGroceryList) => {
+        this.groupedGroceryList = groupedGroceryList;
+        this.groupNames = Object.keys(groupedGroceryList);
+
+        this.styles.loadingScreen = { display: 'none' };
+      });
+  },
+});

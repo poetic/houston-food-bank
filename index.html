@@ -16,114 +16,116 @@
 </head>
 
 <body class="gray">
-  <div class="modal-wrapper" id="v-empty-cart-modal" v-bind:style="styles.emptyCartModal">
-    <div class="modal">
-      <h2>Empty your cart?</h2>
-      <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Cancel</a></div>
-  </div>
-  <div class="modal-wrapper" id="v-over-budget-modal" v-bind:style="styles.overBudgetModal">
-    <div class="modal">
-      <h2>Oh no! You're going over your budget!</h2>
-      <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('overBudgetModal')">Got it</a></div>
-  </div>
-  <div class="background w-clearfix">
-    <div class="loading-screen" data-ix="loading" id="v-loading" v-bind:style="styles.loadingScreen">
-      <div class="loading-fill" v-bind:style="styles.loadingFill">
-        <div class="apple-outline"></div>
-      </div>
+  <div id="v-app">
+    <div class="modal-wrapper" id="v-empty-cart-modal" v-bind:style="styles.emptyCartModal">
+      <div class="modal">
+        <h2>Empty your cart?</h2>
+        <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Cancel</a></div>
     </div>
-    <div class="top">
-      <div class="top-flex">
-        <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
-        <div class="tracker" id="v-tracker">
-          <div class="red tracker-amount">{{ adjustedTotalCalories() | decimal }} calories</div>
-          <div class="divider tracker-amount">/</div>
-          <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
-        </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
-      <a class="cart-button w-inline-block" data-ix="mobile-cart-menu" href="#"></a>
+    <div class="modal-wrapper" id="v-over-budget-modal" v-bind:style="styles.overBudgetModal">
+      <div class="modal">
+        <h2>Oh no! You're going over your budget!</h2>
+        <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('overBudgetModal')">Got it</a></div>
     </div>
-    <div class="list w-clearfix">
-      <div class="list-tabs w-tabs" data-duration-in="300" data-duration-out="100">
-        <div class="list-tabs-menu w-tab-menu" id="v-grocery-list-tabs">
-          <a class="list-tab-link w--current w-inline-block w-tab-link" data-w-tab="Fruit" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
-            <div>{{ groupName }}</div>
-          </a>
+    <div class="background w-clearfix">
+      <div class="loading-screen" data-ix="loading" id="v-loading" v-bind:style="styles.loadingScreen">
+        <div class="loading-fill" v-bind:style="styles.loadingFill">
+          <div class="apple-outline"></div>
         </div>
-        <div class="list-tabs-content w-tab-content" id="v-grocery-list-tabs-content">
-          <div class="list-tab-pane w--tab-active w-tab-pane" data-w-tab="Fruit" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
-            <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
-              <div class="list-item-name">{{ item.name }}</div>
-              <div class="list-item-details">
-                <div>{{ item.calories | decimal }} calories</div>
-              </div>
-              <div class="list-item-details">
-                <div>{{ item.servings }}</div>
-              </div>
-              <div class="list-item-details">
-                <div>{{ item.price | currency }}</div>
-              </div>
-              <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious.</div>
-              <div class="quantity">
-                <div class="quantity-flex w-clearfix">
-                  <a class="w-inline-block" href="#" v-on:click="removeItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b664_less-disabled.png" width="32"></a>
-                  <div class="quantity-amount">
-                    <div>{{ item.quantity }}</div>
+      </div>
+      <div class="top">
+        <div class="top-flex">
+          <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
+          <div class="tracker" id="v-tracker">
+            <div class="red tracker-amount">{{ adjustedTotalCalories() | decimal }} calories</div>
+            <div class="divider tracker-amount">/</div>
+            <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
+          </div><img class="logo" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b682_opa-logo.jpg" width="101"></div>
+        <a class="cart-button w-inline-block" data-ix="mobile-cart-menu" href="#"></a>
+      </div>
+      <div class="list w-clearfix">
+        <div class="list-tabs w-tabs" data-duration-in="300" data-duration-out="100">
+          <div class="list-tabs-menu w-tab-menu" id="v-grocery-list-tabs">
+            <a class="list-tab-link w--current w-inline-block w-tab-link" data-w-tab="Fruit" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
+              <div>{{ groupName }}</div>
+            </a>
+          </div>
+          <div class="list-tabs-content w-tab-content" id="v-grocery-list-tabs-content">
+            <div class="list-tab-pane w--tab-active w-tab-pane" data-w-tab="Fruit" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
+              <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
+                <div class="list-item-name">{{ item.name }}</div>
+                <div class="list-item-details">
+                  <div>{{ item.calories | decimal }} calories</div>
+                </div>
+                <div class="list-item-details">
+                  <div>{{ item.servings }}</div>
+                </div>
+                <div class="list-item-details">
+                  <div>{{ item.price | currency }}</div>
+                </div>
+                <div class="disclaimer" v-if="item.nonNutritious">* These calories are non-nutritious.</div>
+                <div class="quantity">
+                  <div class="quantity-flex w-clearfix">
+                    <a class="w-inline-block" href="#" v-on:click="removeItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b664_less-disabled.png" width="32"></a>
+                    <div class="quantity-amount">
+                      <div>{{ item.quantity }}</div>
+                    </div>
+                    <a class="w-inline-block" href="#" v-on:click="addItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b663_more.png" width="32"></a>
                   </div>
-                  <a class="w-inline-block" href="#" v-on:click="addItem(item)"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b663_more.png" width="32"></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="cart" id="v-cart">
-      <div class="cart-overflow">
-        <div class="cart-heading">
-          <div class="my-shopping-cart">My shopping cart</div>
-          <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories | decimal }} calories</div>
-          <div>Nutritious calories: {{ nutritiousCalories() | decimal }}</div>
-          <div>Non-nutritious calories: {{ nonNutritiousCalories() | decimal }}</div>
-        </div>
-        <div class="full-cart" v-show="!cartIsEmpty()">
-          <div class="cart-title w-clearfix">
-            <div class="quantity-title">
-              <div>QTY</div>
-            </div>
-            <div class="item-title">
-              <div>ITEM</div>
-            </div>
-            <div class="cart-right">
-              <div class="item-price">
-                <div>PRICE</div>
-              </div>
-            </div>
+      <div class="cart" id="v-cart">
+        <div class="cart-overflow">
+          <div class="cart-heading">
+            <div class="my-shopping-cart">My shopping cart</div>
+            <div class="bold">Your family has {{ budget | currency }} to spend on {{ totalCalories | decimal }} calories</div>
+            <div>Nutritious calories: {{ nutritiousCalories() | decimal }}</div>
+            <div>Non-nutritious calories: {{ nonNutritiousCalories() | decimal }}</div>
           </div>
-          <div class="cart-item w-clearfix" v-for="item in selectedItems()">
-            <div class="cart-quantity">
-              <div>{{ item.quantity }}</div>
-            </div>
-            <div class="cart-item-block">
-              <div class="cart-details">
-                <div class="cart-item-name">{{ item.name }}</div>
+          <div class="full-cart" v-show="!cartIsEmpty()">
+            <div class="cart-title w-clearfix">
+              <div class="quantity-title">
+                <div>QTY</div>
               </div>
-              <div class="cart-details">
-                <div>{{ (item.calories * item.quantity) | decimal }} calories</div>
-                <div>{{ (item.price * item.quantity) | currency }}</div>
+              <div class="item-title">
+                <div>ITEM</div>
               </div>
-              <div class="remove"><a class="remove-link" href="#" v-on:click="removeAllOfItem(item)">remove</a></div>
+              <div class="cart-right">
+                <div class="item-price">
+                  <div>PRICE</div>
+                </div>
+              </div>
             </div>
+            <div class="cart-item w-clearfix" v-for="item in selectedItems()">
+              <div class="cart-quantity">
+                <div>{{ item.quantity }}</div>
+              </div>
+              <div class="cart-item-block">
+                <div class="cart-details">
+                  <div class="cart-item-name">{{ item.name }}</div>
+                </div>
+                <div class="cart-details">
+                  <div>{{ (item.calories * item.quantity) | decimal }} calories</div>
+                  <div>{{ (item.price * item.quantity) | currency }}</div>
+                </div>
+                <div class="remove"><a class="remove-link" href="#" v-on:click="removeAllOfItem(item)">remove</a></div>
+              </div>
+            </div>
+            <div class="cart-action">
+              <div class="cart-total-block">
+                <div class="cart-total">Total</div>
+                <div class="cart-total-amount">
+                  <div>{{ cartTotalPrice() | currency }}</div>
+                </div>
+              </div><a class="button margin-bottom outline w-button" data-ix="show-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Empty cart</a></div>
           </div>
-          <div class="cart-action">
-            <div class="cart-total-block">
-              <div class="cart-total">Total</div>
-              <div class="cart-total-amount">
-                <div>{{ cartTotalPrice() | currency }}</div>
-              </div>
-            </div><a class="button margin-bottom outline w-button" data-ix="show-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Empty cart</a></div>
-        </div>
-        <div class="empty-cart" v-show="cartIsEmpty()"><img class="cart-icon" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b67e_shopping-cart.png" width="71">
-          <div>You haven't selected any groceries yet!</div>
+          <div class="empty-cart" v-show="cartIsEmpty()"><img class="cart-icon" src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b67e_shopping-cart.png" width="71">
+            <div>You haven't selected any groceries yet!</div>
+          </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ const getNumericValue = value => (
   isNaN(value) ? 0 : Number(value)
 );
 
-const store = {
+const data = {
   budget: getNumericValue(budget),
   totalCalories: getNumericValue(totalCalories),
   groupedGroceryList: {},
@@ -19,12 +19,6 @@ const store = {
     loadingFill: {},
     emptyCartModal: {},
     overBudgetModal: {},
-  },
-  toggle(elementName) {
-    const elementStyle = this.styles[elementName] || {};
-    const display = elementStyle.display === 'block' ? 'none' : 'block';
-
-    this.styles[elementName] = { display };
   },
   selectedItems() {
     const groupedSelectedItems = this.groupNames.map(groupName => (
@@ -63,4 +57,4 @@ const store = {
   },
 };
 
-export default store;
+export default data;
