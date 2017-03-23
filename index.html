@@ -22,12 +22,12 @@
     </div>
   </div>
   <div id="v-app">
-    <div class="modal-wrapper" id="v-empty-cart-modal" v-bind:style="styles.emptyCartModal">
+    <div class="modal-wrapper" v-bind:style="styles.emptyCartModal">
       <div class="modal">
         <h2>Empty your cart?</h2>
         <p>Are you sure you want to empty your cart? This action cannot be undone.</p><a class="button empty w-button" href="#" v-on:click="emptyCart">Empty</a><a class="button green outline w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('emptyCartModal')">Cancel</a></div>
     </div>
-    <div class="modal-wrapper" id="v-over-budget-modal" v-bind:style="styles.overBudgetModal">
+    <div class="modal-wrapper" v-bind:style="styles.overBudgetModal">
       <div class="modal">
         <h2>Oh no! You're going over your budget!</h2>
         <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('overBudgetModal')">Got it</a></div>
@@ -36,7 +36,7 @@
       <div class="top">
         <div class="top-flex">
           <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
-          <div class="tracker" id="v-tracker">
+          <div class="tracker">
             <div class="red tracker-amount">{{ adjustedTotalCalories() | decimal }} calories</div>
             <div class="divider tracker-amount">/</div>
             <div class="green tracker-amount">{{ adjustedBudget() | currency }}</div>
@@ -45,12 +45,12 @@
       </div>
       <div class="list w-clearfix">
         <div class="list-tabs w-tabs" data-duration-in="300" data-duration-out="100">
-          <div class="list-tabs-menu w-tab-menu" id="v-grocery-list-tabs">
+          <div class="list-tabs-menu w-tab-menu">
             <a class="list-tab-link w--current w-inline-block w-tab-link" data-w-tab="Fruit" v-bind:class="isCurrent(groupIndex)" v-for="(groupName, groupIndex) in groupNames" v-on:click="selectTab(groupIndex)">
               <div>{{ groupName }}</div>
             </a>
           </div>
-          <div class="list-tabs-content w-tab-content" id="v-grocery-list-tabs-content">
+          <div class="list-tabs-content w-tab-content">
             <div class="list-tab-pane w--tab-active w-tab-pane" data-w-tab="Fruit" v-bind:class="isActive(groupIndex)" v-for="(groupName, groupIndex) in groupNames">
               <div class="list-item-block w-clearfix" v-for="(item, itemIndex) in groupedGroceryList[groupName]">
                 <div class="list-item-name">{{ item.name }}</div>
@@ -78,7 +78,7 @@
           </div>
         </div>
       </div>
-      <div class="cart" id="v-cart">
+      <div class="cart">
         <div class="cart-overflow">
           <div class="cart-heading">
             <div class="my-shopping-cart">My shopping cart</div>
