@@ -15,8 +15,6 @@ const data = {
   currentTab: 0,
   activeContent: 0,
   styles: {
-    loadingScreen: {},
-    loadingFill: {},
     emptyCartModal: {},
     overBudgetModal: {},
   },

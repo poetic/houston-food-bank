@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import $ from 'jquery';
 
 import './startup';
 
@@ -14,10 +15,12 @@ new Vue({
   mounted() {
     fetchGroceryList()
       .then((groupedGroceryList) => {
-        this.groupedGroceryList = groupedGroceryList;
-        this.groupNames = Object.keys(groupedGroceryList);
+        setTimeout(() => {
+          this.groupedGroceryList = groupedGroceryList;
+          this.groupNames = Object.keys(groupedGroceryList);
 
-        this.styles.loadingScreen = { display: 'none' };
+          $('.loading-screen').hide();
+        }, 1500);
       });
   },
 });

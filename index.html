@@ -16,6 +16,11 @@
 </head>
 
 <body class="gray">
+  <div class="loading-screen" data-ix="loading">
+    <div class="loading-fill">
+      <div class="apple-outline"></div>
+    </div>
+  </div>
   <div id="v-app">
     <div class="modal-wrapper" id="v-empty-cart-modal" v-bind:style="styles.emptyCartModal">
       <div class="modal">
@@ -28,11 +33,6 @@
         <p>Remove an item to get your budget back in the green.</p><a class="button solid w-button" data-ix="close-empty-cart-modal" href="#" v-on:click="toggle('overBudgetModal')">Got it</a></div>
     </div>
     <div class="background w-clearfix">
-      <div class="loading-screen" data-ix="loading" id="v-loading" v-bind:style="styles.loadingScreen">
-        <div class="loading-fill" v-bind:style="styles.loadingFill">
-          <div class="apple-outline"></div>
-        </div>
-      </div>
       <div class="top">
         <div class="top-flex">
           <a class="w-inline-block" href="/"><img src="http://uploads.webflow.com/58cc4e15bf7c04924929b657/58cc4e15bf7c04924929b681_hfb-logo.jpg" width="106"></a>
