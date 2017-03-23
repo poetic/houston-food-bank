@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
-import './modules/remove-webflow';
-import './modules/filters';
+import './startup';
 
 import data from './data';
 import methods from './methods';
