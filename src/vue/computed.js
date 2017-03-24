@@ -42,4 +42,8 @@ export default {
   adjustedBudget() {
     return this.budget - this.cartTotalPrice;
   },
+
+  calorieGoalMet() {
+    return this.adjustedTotalCalories > 0 && this.adjustedTotalCalories >= this.totalCalories;
+  },
 };
