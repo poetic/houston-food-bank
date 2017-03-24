@@ -4,12 +4,14 @@ import $ from 'jquery';
 import './startup';
 
 import data from './data';
+import computed from './computed';
 import methods from './methods';
 import fetchGroceryList from './modules/fetchGroceryList';
 
 /* eslint-disable no-new */
 new Vue({
   data,
+  computed,
   methods,
   el: '#v-app',
   mounted() {

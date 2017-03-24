@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 const emptyCart = function () {
-  this.selectedItems().forEach((item) => {
+  this.selectedItems.forEach((item) => {
     item.quantity = 0;
   });
 

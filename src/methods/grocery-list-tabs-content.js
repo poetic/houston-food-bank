@@ -11,7 +11,7 @@ export const removeItem = function (item) {
 };
 
 export const addItem = function (item) {
-  if (this.adjustedBudget() >= item.price) {
+  if (this.adjustedBudget >= item.price) {
     item.quantity += 1;
   } else {
     this.toggle('overBudgetModal');
