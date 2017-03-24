@@ -6,6 +6,8 @@ import computed from './computed';
 import methods from './methods';
 import fetchGroceryList from '../modules/fetchGroceryList';
 
+const IDEAL_LOADING_TIME = 2000;
+
 /* eslint-disable no-new */
 new Vue({
   data,
@@ -13,14 +15,21 @@ new Vue({
   methods,
   el: '#v-app',
   mounted() {
+    const startFetch = new Date();
+
     fetchGroceryList()
-      .then((groupedGroceryList) => {
+      .then((groupedGroceryList = {}) => {
+        const endFetch = new Date();
+        const timeElapsed = (endFetch.getTime() - startFetch.getTime());
+
+        const loadingTimeLeft = IDEAL_LOADING_TIME - timeElapsed;
+
         setTimeout(() => {
           this.groupedGroceryList = groupedGroceryList;
           this.groupNames = Object.keys(groupedGroceryList);
 
           $('.loading-screen').hide();
-        }, 1500);
+        }, loadingTimeLeft);
       });
   },
 });
